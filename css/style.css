@@ -1,0 +1,121 @@
+:root { 
+
+}
+
+body { 
+    background: #0f0f0f;
+    color: #fff;
+    font-family: 'Alegreya Sans SC';
+    height: 100vh;
+}
+
+body.light-theme { 
+    background: linear-gradient(to bottom, rgba(4, 16, 21, 1),  rgba(20, 0 , 29, 0.59));
+}
+
+.wrapper { 
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom, rgba(4, 16, 21, 1),  rgba(20, 0 , 29, 0.59));
+    height: 100vh;
+}
+
+.wrapper.light-theme { 
+    background: linear-gradient(to bottom, rgba(180, 204, 217, 1),  rgba(250, 184 , 184, 0.59));
+}
+
+@media screen and (min-width:1000px) {
+    .container { 
+        padding: 0px 40px;
+    }
+    
+    .header { 
+        padding: 20px 0px;
+    }
+
+    .header__row { 
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header__row__logo { 
+        display: flex;
+    }
+    
+    .header__logo { 
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 25px;
+        font-weight: 400;
+        transition: all 0.9s ease;
+        transition-delay: 0.5s;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .header__logo.v2 { 
+        transform: translate3d(-30vw, 0, 0);
+    }
+
+    .header__logo__mob { 
+        transition: all 0.9s ease;
+        transition-delay: 0.5s;
+        transform: translate3d(-30vw, 0% , 0);
+    }
+
+    .header__logo__mob.v2 { 
+        transform: translate3d(-221px, 0%, 0);
+    }
+
+    .header__row__nav { 
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .header__nav { 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        height: 100%;
+    }
+
+    .nav__theme::before { 
+        content: "";
+        position: absolute;
+        width: 34px;
+        height: 2px;
+        left: -7px;
+        bottom: 0px;
+        background: #fff;
+    }
+
+    .header__nav img { 
+        width:20px ;
+    }
+
+    .header__nav p { 
+        font-size: 15px;
+    }
+
+    .nav__lang::before { 
+        content: "";
+        position: absolute;
+        width: 34px;
+        height: 2px;
+        left: 7px;
+        bottom: 0px;
+        background: #fff;
+    }
+
+    .header__nav__line { 
+        display: flex;
+        margin: auto 0 0 0 ;
+        height: 32px;
+        width: 2px;
+        background-color: #fff;
+    }
+
+}

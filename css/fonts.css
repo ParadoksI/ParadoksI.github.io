@@ -1,0 +1,240 @@
+@font-face {
+    font-family: 'Ekibastuz Ex Bk';
+    src: url('../fonts/ecib/Ekibastuz-ExtraBlack.eot');
+    src: local('../fonts/ecib/Ekibastuz ExtraBlack'), local('Ekibastuz-ExtraBlack'),
+        url('../fonts/ecib/Ekibastuz-ExtraBlack.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/ecib/Ekibastuz-ExtraBlack.woff2') format('woff2'),
+        url('../fonts/ecib/Ekibastuz-ExtraBlack.woff') format('woff'),
+        url('../fonts/ecib/Ekibastuz-ExtraBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ekibastuz Bk';
+    src: url('../fonts/ecib/Ekibastuz-Black.eot');
+    src: local('../fonts/ecib/Ekibastuz Black'), local('Ekibastuz-Black'),
+        url('../fonts/ecib/Ekibastuz-Black.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/ecib/Ekibastuz-Black.woff2') format('woff2'),
+        url('../fonts/ecib/Ekibastuz-Black.woff') format('woff'),
+        url('../fonts/ecib/Ekibastuz-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ekibastuz Rg';
+    src: url('../fonts/ecib/Ekibastuz-Bold.eot');
+    src: local('../fonts/ecib/Ekibastuz Bold'), local('Ekibastuz-Bold'),
+        url('../fonts/ecib/Ekibastuz-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/ecib/Ekibastuz-Bold.woff2') format('woff2'),
+        url('../fonts/ecib/Ekibastuz-Bold.woff') format('woff'),
+        url('../fonts/ecib/Ekibastuz-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ekibastuz Hv';
+    src: url('../fonts/ecib/Ekibastuz-Heavy.eot');
+    src: local('../fonts/ecib/Ekibastuz Heavy'), local('Ekibastuz-Heavy'),
+        url('../fonts/ecib/Ekibastuz-Heavy.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/ecib/Ekibastuz-Heavy.woff2') format('woff2'),
+        url('../fonts/ecib/Ekibastuz-Heavy.woff') format('woff'),
+        url('../fonts/ecib/Ekibastuz-Heavy.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ekibastuz Rg';
+    src: url('../fonts/ecib/Ekibastuz-Regular.eot');
+    src: local('../fonts/ecib/Ekibastuz Regular'), local('Ekibastuz-Regular'),
+        url('../fonts/ecib/Ekibastuz-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/ecib/Ekibastuz-Regular.woff2') format('woff2'),
+        url('../fonts/ecib/Ekibastuz-Regular.woff') format('woff'),
+        url('../fonts/ecib/Ekibastuz-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ekibastuz Lt';
+    src: url('../fonts/ecib/Ekibastuz-Light.eot');
+    src: local('../fonts/ecib/Ekibastuz Light'), local('Ekibastuz-Light'),
+        url('../fonts/ecib/Ekibastuz-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/ecib/Ekibastuz-Light.woff2') format('woff2'),
+        url('../fonts/ecib/Ekibastuz-Light.woff') format('woff'),
+        url('../fonts/ecib/Ekibastuz-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+.alegreya-sans sc-thin {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.alegreya-sans sc-light {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.alegreya-sans sc-regular {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.alegreya-sans sc-medium {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.alegreya-sans sc-bold {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.alegreya-sans sc-extrabold {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.alegreya-sans sc-black {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.alegreya-sans sc-thin-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.alegreya-sans sc-light-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.alegreya-sans sc-regular-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.alegreya-sans sc-medium-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.alegreya-sans sc-bold-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.alegreya-sans sc-extrabold-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.alegreya-sans sc-black-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.alegreya-sans sc-thin {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.alegreya-sans sc-light {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.alegreya-sans sc-regular {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.alegreya-sans sc-medium {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.alegreya-sans sc-bold {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.alegreya-sans sc-extrabold {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.alegreya-sans sc-black {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.alegreya-sans sc-thin-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.alegreya-sans sc-light-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.alegreya-sans sc-regular-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.alegreya-sans sc-medium-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.alegreya-sans sc-bold-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.alegreya-sans sc-extrabold-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.alegreya-sans sc-black-italic {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
