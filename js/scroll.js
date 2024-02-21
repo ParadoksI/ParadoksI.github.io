@@ -3,13 +3,13 @@ gsap.registerPlugin(ScrollTrigger);
 var sections = gsap.utils.toArray(".panel");
 
 gsap.to(".data__container", {
-    xPercent: -100,
+    xPercent: -90,
     ease: "none",
     scrollTrigger: {
         trigger: ".data__container",
         start: "top top",
         pin: true,
-        scrub: 1.5,
+        scrub: 1,
         end: () => "+=" + document.querySelector(".data__container").offsetWidth
     }
 });
@@ -43,7 +43,7 @@ for (var i = 0; i < 2; i++) {
     }
 
     var customName = customNames[key];
-    var customLabel = customName[0]; // Используем русские названия
+    var customLabel = customName[1]; // Используем русские названия
 
     var numberSpan = document.createElement('div');
     numberSpan.classList.add('data__number'); // Добавляем класс с именем ключа
@@ -71,17 +71,21 @@ dataGrid.appendChild(section);
 for (var i = 2; i < Object.keys(data).length; i++) {
     var key = Object.keys(data)[i];
     var dataItem = document.createElement('div');
-    dataItem.classList.add('data__subitem');
+    dataItem.classList.add('data__subitem', 'sec__section');
 
     if (i === 3) {
-        dataItem.classList.add('right');
+        dataItem.classList.add('right', 'sec_section__right');
     }
 
     var customName = customNames[key];
-    var customLabel = customName[0]; // Используем русские названия
+    var customLabel = customName[1]; // Используем русские названия
 
     var numberSpan = document.createElement('div');
+    
     numberSpan.classList.add('data__number'); // Добавляем класс с именем ключа
+    if (i === 3) { 
+        numberSpan.classList.add('data__number__right');
+    }
     numberSpan.textContent = data[key] + " SOL"; // Устанавливаем значение числа
 
     dataItem.textContent = customLabel;

@@ -31,16 +31,25 @@ function handleScroll() {
             headerRowNavMob.classList.add('v2');
         }
 
-        
+
     }
 }
 
 function handleMobileMenuClick() {
     // Проверяем, есть ли у headerRowNav класс opend
     if (headerRowNav.classList.contains('opend')) {
+        if (window.scrollY > 0) {
+            
+            headerRowNav.classList.remove('opend');
+            headerRowNav.classList.add('v2');
+            
+        } else {
+            headerRowNav.classList.remove('opend');
+            headerRowNav.classList.remove('v2');
+            headerRowNavMob.classList.add('v2');
+        }
         // Если есть, убираем класс opend
-        headerRowNav.classList.remove('opend');
-        headerRowNav.classList.add('v2');
+
     } else {
         // Если нет, убираем класс v2 и добавляем класс opend
         headerRowNav.classList.remove('v2');
