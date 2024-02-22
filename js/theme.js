@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var dataLines = document.querySelectorAll('.data__number');
 
-    var linksButtons = document.querySelectorAll('.links__button');
+    var linksButtons = document.querySelectorAll('.links__button button');
+    var imgElements = document.querySelectorAll('.links__button img');
 
     themeButton.addEventListener('click', function () {
         // Получаем элемент body
@@ -39,6 +40,20 @@ document.addEventListener('DOMContentLoaded', function () {
         linksButtons.forEach(function(item) { 
             item.classList.toggle('light-theme');
         });
+
+        if (body.classList.contains('light-theme')) {
+            // Если текущая тема - светлая, меняем src на картинки с припиской -light
+            imgElements.forEach(function (img) {
+                var src = img.getAttribute('src');
+                img.setAttribute('src', src.replace('.svg', '-light.svg'));
+            });
+        } else {
+            // Если текущая тема - темная, меняем src на обычные картинки
+            imgElements.forEach(function (img) {
+                var src = img.getAttribute('src');
+                img.setAttribute('src', src.replace('-light.svg', '.svg'));
+            });
+        }
 
         if (body.classList.contains('light-theme')) { 
             headerLogoImg.src = '../img/logo_color_transparent.svg';

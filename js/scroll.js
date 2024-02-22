@@ -24,7 +24,7 @@ var englishText = {
     rightDisc: "for power users, new consumers, and everyone in between.",
     titleStat: "Our statistics",
     titleLast: "Begin right now!",
-    btn1 : "Regisration",
+    btn1 : "Registration",
     btn2 : "Dashboard",
     btn3 : "Telegram",
     btn4 : "Discord",
