@@ -23,7 +23,7 @@
     <title>Solana Forge</title>
 </head>
 
-<body>
+<body class="">
     <div class="wrapper">
         <header id="header">
             <div class="header">
@@ -35,7 +35,7 @@
                                 <p>SOLANA FORGE</p>
                             </div>
                             <div class="header__logo__mob">
-                                <img src="./img/logo_color_transparent.svg" alt="">
+                                <img src="./img/logo_color_transparent__dark.svg" alt="">
                             </div>
                         </div>
                         <div class="header__row__menu">
@@ -49,11 +49,14 @@
                                 <div class="header__nav__line">
                                 </div>
                                 <div class="header__nav__reg">
-                                    <div class="header__nav__reg__func">
-                                        <p>Registrati</p>
-                                        <img src="./img/reg-ico.svg" alt="">
-                                        <p>n</p>
-                                    </div>
+                                    <a href="https://app.solanaforge.xyz/registration">
+                                        <div class="header__nav__reg__func">
+                                            <p>Registrati</p>
+                                            <img src="./img/reg-ico.svg" alt="">
+                                            <p>n</p>
+                                        </div>
+                                    </a>
+                                    
                                 </div>
                             </div>
                             
@@ -109,15 +112,17 @@
     </div>
     <div class="container">
         <div class="last__container">
-            <h1>Начинай прямо сейчас!</h1>
+            <h1 class="data__title links__title">Begin right now!</h1>
             <div class="links__content">
                 <div class="links__button">
-                    <button id="btn1">Регистрация</button>
-                    <button id="btn2">Dashboard</button>
-                    <button id="btn3">Telegram</button>
+                    <a href="https://app.solanaforge.xyz/registration"><button id="btn1">Регистрация</button></a>
+                    <a href="https://app.solanaforge.xyz"><button id="btn2">Dashboard</button></a>
+                    <a href="https://t.me/solanaforgeru"><button id="btn3">Telegram</button></a>
+                    <a href="#"><button id="btn4">Discord</button></a>
+                    <a href="#"><button id="btn5">Gitbook</button></a>
                 </div>
                 <div class="links__logo">
-                    <img src="./img/logo_color_transparent.svg" alt="">
+                    <img src="./img/logo_color_transparent__dark.svg" alt="">
                 </div>
             </div>
         </div>
@@ -130,10 +135,10 @@
         integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/DebugPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
 
     <script src="./js/header.js"></script>
+    <script src="./js/theme.js"></script>
     <script src="./js/scripts.js"></script>
     <script src="./js/scroll.js"></script>
 </body>

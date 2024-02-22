@@ -22,14 +22,26 @@ var englishText = {
     title: "Powerful for developers <br> Fast for everyone",
     leftDisc: "Bring blockchain to the people. Solana supports experiences",
     rightDisc: "for power users, new consumers, and everyone in between.",
-    titleStat: "Our statistics"
+    titleStat: "Our statistics",
+    titleLast: "Begin right now!",
+    btn1 : "Regisration",
+    btn2 : "Dashboard",
+    btn3 : "Telegram",
+    btn4 : "Discord",
+    btn5 : "Gitbook"
 };
 
 var russianText = {
     title: "Мощный для разработчиков <br> Быстрый для всех",
     leftDisc: "Доставляйте блокчейн людям. Solana поддерживает опыт",
     rightDisc: "для опытных пользователей, новых потребителей и всех, кто между ними.",
-    titleStat: "Немного статистики"
+    titleStat: "Немного статистики",
+    titleLast: "Начните прямо сейчас!",
+    btn1 : "Регистрация",
+    btn2 : "Наш Dashboard",
+    btn3 : "Telegram-канал",
+    btn4 : "Наш Discord",
+    btn5 : "Gitbook"
 };
 
 // Получение элементов заголовка и описания
@@ -37,11 +49,23 @@ var titleText = document.querySelector('.title__text.all_title');
 var leftDisc = document.querySelector('.title__disc__left');
 var rightDisc = document.querySelector('.title__disc__right');
 var titleStat = document.querySelector('.data__title p');
+var titleLast = document.querySelector('.links__title');
+var btn1 = document.getElementById('btn1');
+var btn2 = document.getElementById('btn2');
+var btn3 = document.getElementById('btn3');
+var btn4 = document.getElementById('btn4');
+var btn5 = document.getElementById('btn5');
 
 titleText.innerHTML = englishText.title;
 leftDisc.innerHTML = englishText.leftDisc;
 rightDisc.innerHTML = englishText.rightDisc;
-titleStat.innerHTML = englishText.titleStat
+titleStat.innerHTML = englishText.titleStat;
+titleLast.innerHtml = englishText.titleLast;
+btn1.innerHTML = englishText.btn1;
+btn2.innerHTML = englishText.btn2;
+btn3.innerHTML = englishText.btn3;
+btn4.innerHTML = englishText.btn4;
+btn5.innerHTML = englishText.btn5;
 
 var data = {
     'connect_stake': 3073412,
@@ -125,6 +149,52 @@ for (var i = 2; i < Object.keys(data).length; i++) {
     section.appendChild(dataItem);
 }
 
+// Функция для запуска анимации чисел, когда они видимы на экране
+function animateNumbersWhenVisible() {
+    var options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5 // Задаем порог для срабатывания обнаружения в половину видимости
+    };
+
+    var observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+            // Если элемент находится в области видимости
+            if (entry.isIntersecting) {
+                var targetNumber = parseFloat(entry.target.textContent.replace(' SOL', '')); // Получаем конечное число
+                
+                // Создаем объект-обертку для числа
+                var numberObject = { value: 0 };
+                
+                // Запускаем анимацию числа
+                gsap.to(numberObject, {
+                    duration: 2, 
+                    value: targetNumber, 
+                    onUpdate: function() {
+                        // Обновляем текст элемента при каждом обновлении анимации
+                        if (entry.target.classList.contains('data__number__right')) {
+                            entry.target.textContent = "SOL " + Math.round(numberObject.value);
+                        } else {
+                            entry.target.textContent = Math.round(numberObject.value) + " SOL";
+                        }
+                    },
+                    ease: "power1.inOut"
+                });
+
+                // Отключаем наблюдение, чтобы анимация не запускалась снова
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    // Наблюдаем за каждым элементом с классом 'data__number'
+    document.querySelectorAll('.data__number').forEach(function(element) {
+        observer.observe(element);
+    });
+}
+// Запускаем функцию при загрузке страницы
+window.addEventListener('load', animateNumbersWhenVisible);
+
 // Анимация появления сверху вниз
 gsap.utils.toArray(".data__title").forEach(panel => {
     gsap.from(panel, {
@@ -166,6 +236,19 @@ coins.forEach((coin, i) => {
     })
 })
 
+gsap.utils.toArray('.links__button a').forEach(function (link, index) {
+    gsap.from(link, {
+        opacity: 0.3,
+        y: 50,
+        duration: 0.5,
+        scrollTrigger: {
+            trigger: link,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        }
+    });
+});
+
 langBtn.addEventListener('click', function () {
     // Локализация
     if (titleText.innerHTML === englishText.title) {
@@ -189,6 +272,37 @@ langBtn.addEventListener('click', function () {
             text: russianText.titleStat,
             ease: "none",
         });
+        gsap.to(titleLast, {
+            duration: 1,
+            text: russianText.titleLast,
+            ease: "none",
+        });
+        gsap.to(btn1, {
+            duration: 1,
+            text: russianText.btn1,
+            ease: "none",
+        });
+        gsap.to(btn2, {
+            duration: 1,
+            text: russianText.btn2,
+            ease: "none",
+        });
+        gsap.to(btn3, {
+            duration: 1,
+            text: russianText.btn3,
+            ease: "none",
+        });
+        gsap.to(btn4, {
+            duration: 1,
+            text: russianText.btn4,
+            ease: "none",
+        });
+        gsap.to(btn5, {
+            duration: 1,
+            text: russianText.btn5,
+            ease: "none",
+        });
+        
     } else {
         gsap.to(".title__text", {
             duration: 1,
@@ -210,7 +324,39 @@ langBtn.addEventListener('click', function () {
             text: englishText.titleStat,
             ease: "none",
         });
+        gsap.to(titleLast, {
+            duration: 1,
+            text: englishText.titleLast,
+            ease: "none",
+        });
+        gsap.to(btn1, {
+            duration: 1,
+            text: englishText.btn1,
+            ease: "none",
+        });
+        gsap.to(btn2, {
+            duration: 1,
+            text: englishText.btn2,
+            ease: "none",
+        });
+        gsap.to(btn3, {
+            duration: 1,
+            text: englishText.btn3,
+            ease: "none",
+        });
+        gsap.to(btn4, {
+            duration: 1,
+            text: englishText.btn4,
+            ease: "none",
+        });
+        gsap.to(btn5, {
+            duration: 1,
+            text: englishText.btn5,
+            ease: "none",
+        });
     }
+
+
 
     var existingDataItems = document.querySelectorAll('.data__subitem');
 
