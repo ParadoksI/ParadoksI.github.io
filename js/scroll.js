@@ -1,4 +1,8 @@
+var langBtn = document.getElementById('lang-btn');
+var lang = 1;
+
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(TextPlugin);
 
 var sections = gsap.utils.toArray(".panel");
 
@@ -13,6 +17,31 @@ gsap.to(".data__container", {
         end: () => "+=" + document.querySelector(".data__container").offsetWidth
     }
 });
+
+var englishText = {
+    title: "Powerful for developers <br> Fast for everyone",
+    leftDisc: "Bring blockchain to the people. Solana supports experiences",
+    rightDisc: "for power users, new consumers, and everyone in between.",
+    titleStat: "Our statistics"
+};
+
+var russianText = {
+    title: "Мощный для разработчиков <br> Быстрый для всех",
+    leftDisc: "Доставляйте блокчейн людям. Solana поддерживает опыт",
+    rightDisc: "для опытных пользователей, новых потребителей и всех, кто между ними.",
+    titleStat: "Немного статистики"
+};
+
+// Получение элементов заголовка и описания
+var titleText = document.querySelector('.title__text.all_title');
+var leftDisc = document.querySelector('.title__disc__left');
+var rightDisc = document.querySelector('.title__disc__right');
+var titleStat = document.querySelector('.data__title p');
+
+titleText.innerHTML = englishText.title;
+leftDisc.innerHTML = englishText.leftDisc;
+rightDisc.innerHTML = englishText.rightDisc;
+titleStat.innerHTML = englishText.titleStat
 
 var data = {
     'connect_stake': 3073412,
@@ -43,23 +72,25 @@ for (var i = 0; i < 2; i++) {
     }
 
     var customName = customNames[key];
-    var customLabel = customName[1]; // Используем русские названия
+    var customLabel = customName[lang]; // Используем русские названия
 
     var numberSpan = document.createElement('div');
     numberSpan.classList.add('data__number'); // Добавляем класс с именем ключа
     if (i === 1) {
         numberSpan.classList.add('data__number__right');
-        numberSpan.textContent = data[key] ;
+        numberSpan.textContent = data[key];
     }
     else {
         numberSpan.textContent = data[key] + " SOL";
     }
-     // Устанавливаем значение числа
+    // Устанавливаем значение числа
 
     dataItem.textContent = customLabel;
     dataItem.appendChild(numberSpan);
 
     dataTitle.appendChild(dataItem);
+
+
 }
 
 // Создаем секцию для остальных элементов
@@ -78,12 +109,12 @@ for (var i = 2; i < Object.keys(data).length; i++) {
     }
 
     var customName = customNames[key];
-    var customLabel = customName[1]; // Используем русские названия
+    var customLabel = customName[lang]; // Используем русские названия
 
     var numberSpan = document.createElement('div');
-    
+
     numberSpan.classList.add('data__number'); // Добавляем класс с именем ключа
-    if (i === 3) { 
+    if (i === 3) {
         numberSpan.classList.add('data__number__right');
     }
     numberSpan.textContent = data[key] + " SOL"; // Устанавливаем значение числа
@@ -93,3 +124,167 @@ for (var i = 2; i < Object.keys(data).length; i++) {
 
     section.appendChild(dataItem);
 }
+
+// Анимация появления сверху вниз
+gsap.utils.toArray(".data__title").forEach(panel => {
+    gsap.from(panel, {
+        y: "-=50", // Начните с немного выше, чем исходное положение
+        opacity: 0, // Начните с прозрачности 0
+        duration: 1, // Длительность анимации 1 секунда
+        scrollTrigger: {
+            trigger: panel,
+            start: "top 50%", // Начать анимацию, когда элемент появляется в 80% видимости
+            end: "bottom 20%", // Закончить анимацию, когда элемент останется в 20% видимости
+            toggleActions: "play none none reverse", // Воспроизвести анимацию при прокрутке вниз и обратно
+        }
+    });
+});
+
+// =====================COINS
+const coins = gsap.utils.toArray(".data__subitem__custom img")
+
+gsap.utils.toArray(".data__subitem__custom img").forEach(img => {
+    gsap.from(img, {
+        y: "-=50", // Начните с немного выше, чем исходное положение
+        opacity: 0, // Начните с прозрачности 0
+        duration: 1, // Длительность анимации 1 секунда
+        scrollTrigger: {
+            trigger: img,
+            start: "top 50%", // Начать анимацию, когда элемент появляется в 80% видимости
+            end: "bottom 20%", // Закончить анимацию, когда элемент останется в 20% видимости
+            toggleActions: "play none none reverse", // Воспроизвести анимацию при прокрутке вниз и обратно
+        }
+    });
+});
+
+coins.forEach((coin, i) => {
+    gsap.from(coin, { 
+        xPercent: coin.dataset.distance,
+        scrollTrigger : {
+            scrub: 0.3
+        }
+    })
+})
+
+langBtn.addEventListener('click', function () {
+    // Локализация
+    if (titleText.innerHTML === englishText.title) {
+        gsap.to(".title__text", {
+            duration: 1,
+            text: russianText.title,
+            ease: "none",
+        });
+        gsap.to(leftDisc, {
+            duration: 1,
+            text: russianText.leftDisc,
+            ease: "none",
+        });
+        gsap.to(rightDisc, {
+            duration: 1,
+            text: russianText.rightDisc,
+            ease: "none",
+        });
+        gsap.to(titleStat, {
+            duration: 1,
+            text: russianText.titleStat,
+            ease: "none",
+        });
+    } else {
+        gsap.to(".title__text", {
+            duration: 1,
+            text: englishText.title,
+            ease: "none",
+        });
+        gsap.to(leftDisc, {
+            duration: 1,
+            text: englishText.leftDisc,
+            ease: "none",
+        });
+        gsap.to(rightDisc, {
+            duration: 1,
+            text: englishText.rightDisc,
+            ease: "none",
+        });
+        gsap.to(titleStat, {
+            duration: 1,
+            text: englishText.titleStat,
+            ease: "none",
+        });
+    }
+
+    var existingDataItems = document.querySelectorAll('.data__subitem');
+
+    existingDataItems.forEach(function (item) {
+        item.parentNode.removeChild(item);
+    });
+
+    if (lang === 1) {
+        langBtn.textContent = "Русский";
+        lang = 0;
+    } else if (lang === 0) {
+        langBtn.textContent = 'English';
+        lang = 1;
+    }
+
+    for (var i = 0; i < 2; i++) {
+        var key = Object.keys(data)[i];
+        var dataItem = document.createElement('div');
+        dataItem.classList.add('data__subitem');
+
+        if (i === 1) {
+            dataItem.classList.add('right');
+        }
+
+        var customName = customNames[key];
+        var customLabel = customName[lang]; // Используем русские названия
+
+        var numberSpan = document.createElement('div');
+        numberSpan.classList.add('data__number'); // Добавляем класс с именем ключа
+        if (i === 1) {
+            numberSpan.classList.add('data__number__right');
+            numberSpan.textContent = data[key];
+        }
+        else {
+            numberSpan.textContent = data[key] + " SOL";
+        }
+        // Устанавливаем значение числа
+
+        dataItem.textContent = customLabel;
+        dataItem.appendChild(numberSpan);
+
+        dataTitle.appendChild(dataItem);
+    }
+
+    // Создаем секцию для остальных элементов
+    var section = document.createElement('section');
+    section.classList.add('data__item', 'panel');
+    dataGrid.appendChild(section);
+
+    // Добавляем оставшиеся элементы в эту секцию
+    for (var i = 2; i < Object.keys(data).length; i++) {
+        var key = Object.keys(data)[i];
+        var dataItem = document.createElement('div');
+        dataItem.classList.add('data__subitem', 'sec__section');
+
+        if (i === 3) {
+            dataItem.classList.add('right', 'sec_section__right');
+        }
+
+        var customName = customNames[key];
+        var customLabel = customName[lang]; // Используем русские названия
+
+        var numberSpan = document.createElement('div');
+
+        numberSpan.classList.add('data__number'); // Добавляем класс с именем ключа
+        if (i === 3) {
+            numberSpan.classList.add('data__number__right');
+        }
+        numberSpan.textContent = data[key] + " SOL"; // Устанавливаем значение числа
+
+        dataItem.textContent = customLabel;
+        dataItem.appendChild(numberSpan);
+
+        section.appendChild(dataItem);
+    }
+});
+
