@@ -6,17 +6,20 @@ gsap.registerPlugin(TextPlugin);
 
 var sections = gsap.utils.toArray(".panel");
 
-gsap.to(".data__container", {
-    xPercent: -90,
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".data__container",
-        start: "top top",
-        pin: true,
-        scrub: 1,
-        end: () => "+=" + document.querySelector(".data__container").offsetWidth
-    }
-});
+if (window.innerWidth > 1000) {
+    gsap.to(".data__container", {
+        xPercent: -90,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".data__container",
+            start: "top top",
+            pin: true,
+            scrub: 1,
+            end: () => "+=" + document.querySelector(".data__container").offsetWidth
+        }
+    });
+}
+
 
 var englishText = {
     title: "Powerful for developers <br> Fast for everyone",
