@@ -4,21 +4,6 @@ var lang = 1;
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
 
-var sections = gsap.utils.toArray(".panel");
-
-if (window.innerWidth > 1000) {
-    gsap.to(".data__container", {
-        xPercent: -90,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".data__container",
-            start: "top top",
-            pin: true,
-            scrub: 1,
-            end: () => "+=" + document.querySelector(".data__container").offsetWidth
-        }
-    });
-}
 
 
 var englishText = {
@@ -27,11 +12,11 @@ var englishText = {
     rightDisc: "for power users, new consumers, and everyone in between.",
     titleStat: "Our statistics",
     titleLast: "Begin right now!",
-    btn1 : "Registration",
-    btn2 : "Dashboard",
-    btn3 : "Telegram",
-    btn4 : "Discord",
-    btn5 : "Gitbook"
+    btn1: "Registration",
+    btn2: "Dashboard",
+    btn3: "Telegram",
+    btn4: "Discord",
+    btn5: "Gitbook"
 };
 
 var russianText = {
@@ -40,11 +25,11 @@ var russianText = {
     rightDisc: "для опытных пользователей, новых потребителей и всех, кто между ними.",
     titleStat: "Немного статистики",
     titleLast: "Начните прямо сейчас!",
-    btn1 : "Регистрация",
-    btn2 : "Наш Dashboard",
-    btn3 : "Telegram-канал",
-    btn4 : "Наш Discord",
-    btn5 : "Gitbook"
+    btn1: "Регистрация",
+    btn2: "Наш Dashboard",
+    btn3: "Telegram-канал",
+    btn4: "Наш Discord",
+    btn5: "Gitbook"
 };
 
 // Получение элементов заголовка и описания
@@ -63,7 +48,7 @@ titleText.innerHTML = englishText.title;
 leftDisc.innerHTML = englishText.leftDisc;
 rightDisc.innerHTML = englishText.rightDisc;
 titleStat.innerHTML = englishText.titleStat;
-titleLast.innerHtml = englishText.titleLast;
+titleLast.innerHTML = englishText.titleLast;
 btn1.innerHTML = englishText.btn1;
 btn2.innerHTML = englishText.btn2;
 btn3.innerHTML = englishText.btn3;
@@ -89,68 +74,129 @@ var dataTitle = document.querySelector('.data__title');
 
 var count = 0;
 
-for (var i = 0; i < 2; i++) {
-    var key = Object.keys(data)[i];
-    var dataItem = document.createElement('div');
-    dataItem.classList.add('data__subitem');
+const url = 'https://app.solanaforge.xyz/landing_get';
 
-    if (i === 1) {
-        dataItem.classList.add('right');
+// Функция для выполнения запроса на сервер и обновления данных
+function fetchDataAndUpdate() {
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка при получении данных: ' + response.status);
+            }
+            return response.json(); // Получаем JSON данные из ответа
+        })
+        .then(data => {
+            console.log('Данные получены успешно:', data);
+
+            // Обновляем словарь данных
+            updateData(data);
+
+            // Обновляем отображение
+            updateContent();
+        })
+        .catch(error => {
+            console.error('Произошла ошибка:', error);
+        });
+}
+
+// Функция для обновления словаря данных
+function updateData(newData) {
+    for (let key in newData) {
+        if (newData.hasOwnProperty(key) && data.hasOwnProperty(key)) {
+            data[key] = newData[key];
+        }
+    }
+}
+
+
+// Функция для обновления отображения данных
+function updateContent() {
+    for (var i = 0; i < 2; i++) {
+        var key = Object.keys(data)[i];
+        var dataItem = document.createElement('div');
+        dataItem.classList.add('data__subitem');
+
+        if (i === 1) {
+            dataItem.classList.add('right');
+        }
+
+        var customName = customNames[key];
+        var customLabel = customNames[key] && customNames[key][lang] ? customNames[key][lang] : ''; // Проверка на наличие свойства
+
+        var numberSpan = document.createElement('div');
+        numberSpan.classList.add('data__number'); // Добавляем класс с именем ключа
+        if (i === 1) {
+            numberSpan.classList.add('data__number__right');
+            numberSpan.textContent = data[key];
+        }
+        else {
+            numberSpan.textContent = data[key] + " SOL";
+        }
+        // Устанавливаем значение числа
+
+        dataItem.textContent = customLabel;
+        dataItem.appendChild(numberSpan);
+
+        dataTitle.appendChild(dataItem);
     }
 
-    var customName = customNames[key];
-    var customLabel = customName[lang]; // Используем русские названия
+    // Создаем секцию для остальных элементов
+    var section = document.createElement('section');
+    section.classList.add('data__item', 'panel');
+    dataGrid.appendChild(section);
 
-    var numberSpan = document.createElement('div');
-    numberSpan.classList.add('data__number'); // Добавляем класс с именем ключа
-    if (i === 1) {
-        numberSpan.classList.add('data__number__right');
-        numberSpan.textContent = data[key];
+    // Добавляем оставшиеся элементы в эту секцию
+    for (var i = 2; i < Object.keys(data).length; i++) {
+        var key = Object.keys(data)[i];
+        var dataItem = document.createElement('div');
+        dataItem.classList.add('data__subitem', 'sec__section');
+
+        if (i === 3) {
+            dataItem.classList.add('right', 'sec_section__right');
+        }
+
+        var customName = customNames[key];
+        var customLabel = customNames[key] && customNames[key][lang] ? customNames[key][lang] : ''; // Проверка на наличие свойства
+
+        var numberSpan = document.createElement('div');
+
+        numberSpan.classList.add('data__number'); // Добавляем класс с именем ключа
+        if (i === 3) {
+            numberSpan.classList.add('data__number__right', 'sec__right');
+        }
+        numberSpan.textContent = data[key] + " SOL"; // Устанавливаем значение числа
+
+        dataItem.textContent = customLabel;
+        dataItem.appendChild(numberSpan);
+
+        section.appendChild(dataItem);
     }
-    else {
-        numberSpan.textContent = data[key] + " SOL";
+
+    
+
+    var sections = gsap.utils.toArray(".panel");
+
+    if (window.innerWidth > 1000) {
+        gsap.to(".data__container", {
+            xPercent: -90,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".data__container",
+                start: "top top",
+                pin: true,
+                scrub: 1,
+                end: () => "+=" + document.querySelector(".data__container").offsetWidth
+            }
+        });
     }
-    // Устанавливаем значение числа
 
-    dataItem.textContent = customLabel;
-    dataItem.appendChild(numberSpan);
-
-    dataTitle.appendChild(dataItem);
-
+    animateNumbersWhenVisible();
 
 }
 
-// Создаем секцию для остальных элементов
-var section = document.createElement('section');
-section.classList.add('data__item', 'panel');
-dataGrid.appendChild(section);
+// Вызовите функцию для получения и обновления данных при загрузке страницы
+fetchDataAndUpdate();
 
-// Добавляем оставшиеся элементы в эту секцию
-for (var i = 2; i < Object.keys(data).length; i++) {
-    var key = Object.keys(data)[i];
-    var dataItem = document.createElement('div');
-    dataItem.classList.add('data__subitem', 'sec__section');
-
-    if (i === 3) {
-        dataItem.classList.add('right', 'sec_section__right');
-    }
-
-    var customName = customNames[key];
-    var customLabel = customName[lang]; // Используем русские названия
-
-    var numberSpan = document.createElement('div');
-
-    numberSpan.classList.add('data__number'); // Добавляем класс с именем ключа
-    if (i === 3) {
-        numberSpan.classList.add('data__number__right');
-    }
-    numberSpan.textContent = data[key] + " SOL"; // Устанавливаем значение числа
-
-    dataItem.textContent = customLabel;
-    dataItem.appendChild(numberSpan);
-
-    section.appendChild(dataItem);
-}
 
 // Функция для запуска анимации чисел, когда они видимы на экране
 function animateNumbersWhenVisible() {
@@ -160,23 +206,29 @@ function animateNumbersWhenVisible() {
         threshold: 0.5 // Задаем порог для срабатывания обнаружения в половину видимости
     };
 
-    var observer = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(function(entry) {
+    var observer = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry, index) {
             // Если элемент находится в области видимости
             if (entry.isIntersecting) {
                 var targetNumber = parseFloat(entry.target.textContent.replace(' SOL', '')); // Получаем конечное число
-                
+
                 // Создаем объект-обертку для числа
                 var numberObject = { value: 0 };
-                
+
                 // Запускаем анимацию числа
                 gsap.to(numberObject, {
-                    duration: 2, 
-                    value: targetNumber, 
-                    onUpdate: function() {
+                    duration: 2,
+                    value: targetNumber,
+                    onUpdate: function () {
                         // Обновляем текст элемента при каждом обновлении анимации
                         if (entry.target.classList.contains('data__number__right')) {
-                            entry.target.textContent = "SOL " + Math.round(numberObject.value);
+                            // Добавляем "SOL" только ко второму элементу с классом data__number__right
+                            if (entry.target.classList.contains('sec__right')) {
+                                
+                                entry.target.textContent = "SOL " + Math.round(numberObject.value);
+                            } else {                      
+                                entry.target.textContent = Math.round(numberObject.value);
+                            }
                         } else {
                             entry.target.textContent = Math.round(numberObject.value) + " SOL";
                         }
@@ -190,13 +242,13 @@ function animateNumbersWhenVisible() {
         });
     }, options);
 
+
     // Наблюдаем за каждым элементом с классом 'data__number'
-    document.querySelectorAll('.data__number').forEach(function(element) {
+    document.querySelectorAll('.data__number').forEach(function (element) {
         observer.observe(element);
     });
 }
-// Запускаем функцию при загрузке страницы
-window.addEventListener('load', animateNumbersWhenVisible);
+
 
 // Анимация появления сверху вниз
 gsap.utils.toArray(".data__title").forEach(panel => {
@@ -231,9 +283,9 @@ gsap.utils.toArray(".data__subitem__custom img").forEach(img => {
 });
 
 coins.forEach((coin, i) => {
-    gsap.from(coin, { 
+    gsap.from(coin, {
         xPercent: coin.dataset.distance,
-        scrollTrigger : {
+        scrollTrigger: {
             scrub: 0.3
         }
     })
@@ -242,11 +294,11 @@ coins.forEach((coin, i) => {
 gsap.utils.toArray('.links__button a').forEach(function (link, index) {
     gsap.from(link, {
         opacity: 0.3,
-        y: 50,
+        y: 20,
         duration: 0.5,
         scrollTrigger: {
             trigger: link,
-            start: 'top 80%',
+            start: 'top 90%',
             toggleActions: 'play none none reverse'
         }
     });
@@ -305,7 +357,7 @@ langBtn.addEventListener('click', function () {
             text: russianText.btn5,
             ease: "none",
         });
-        
+
     } else {
         gsap.to(".title__text", {
             duration: 1,
@@ -436,4 +488,3 @@ langBtn.addEventListener('click', function () {
         section.appendChild(dataItem);
     }
 });
-
