@@ -74,30 +74,7 @@ var dataTitle = document.querySelector('.data__title');
 
 var count = 0;
 
-const url = 'https://app.solanaforge.xyz/landing_get';
 
-// Функция для выполнения запроса на сервер и обновления данных
-function fetchDataAndUpdate() {
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Ошибка при получении данных: ' + response.status);
-            }
-            return response.json(); // Получаем JSON данные из ответа
-        })
-        .then(data => {
-            console.log('Данные получены успешно:', data);
-
-            // Обновляем словарь данных
-            updateData(data);
-
-            // Обновляем отображение
-            updateContent();
-        })
-        .catch(error => {
-            console.error('Произошла ошибка:', error);
-        });
-}
 
 // Функция для обновления словаря данных
 function updateData(newData) {
@@ -194,8 +171,7 @@ function updateContent() {
 
 }
 
-// Вызовите функцию для получения и обновления данных при загрузке страницы
-fetchDataAndUpdate();
+updateContent();
 
 
 // Функция для запуска анимации чисел, когда они видимы на экране
