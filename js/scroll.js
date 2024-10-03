@@ -74,6 +74,9 @@ var dataTitle = document.querySelector('.data__title');
 
 var count = 0;
 
+const url = 'https://app.solanaforge.xyz/landing_get';
+
+// Функция для выполнения запроса на сервер и обновления данных
 
 
 // Функция для обновления словаря данных
